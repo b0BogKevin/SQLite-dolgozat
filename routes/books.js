@@ -21,6 +21,8 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
+    console.log(req.body);
+    
     try {
         const result = await dbQuery("INSERT INTO books (title,author,description,year) VALUES(?,?,?,?);",[req.body.title,req.body.author,req.body.description,req.body.year]);
         res.status(200).json({ id: result.lastID, ...req.body });
